@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio Pt Ari Teguh Prasetya</title>
+  <style>
+    /* Reset dan font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #222;
+      text-decoration: underline;
+    }
+
+    body.dark a:hover {
+      color: #fff;
+    }
+
+    /* Bagian PORTOFOLIO full width */
+    .portfolio-header {
+      background-color: #000;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      margin-bottom: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+      user-select: none;
+    }
+
+    /* Untuk memberi jarak konten agar tidak tertutup header */
+    main {
+      margin-top: 70px;
+    }
+
+    /* Foto Profil */
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    .profile-photo:hover {
+      transform: scale(1.05);
+    }
+
+    section {
+      margin-bottom: 50px;
+      scroll-margin-top: 80px;
+      background: #f9f9f9;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark section {
+      background: #1c1c1c;
+      box-shadow: 0 2px 15px rgba(255,255,255,0.1);
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #444;
+      padding-bottom: 8px;
+      color: #222;
+      letter-spacing: 0.5px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark h2 {
+      border-color: #888;
+      color: #eee;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    body.dark p {
+      color: #ccc;
+    }
+
+    /* Nama dan jurusan tepat di bawah foto */
+    .home-info {
+      text-align: center;
+      font-weight: 700;
+      color: #444;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      user-select: none;
+      letter-spacing: 0.7px;
+    }
+    body.dark .home-info {
+      color: #bbb;
+    }
+
+    /* Sertifikat list */
+    ul.cert-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul.cert-list li {
+      background: #e4e4e4;
+      margin-bottom: 12px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      color: #222;
+      box-shadow: 1px 1px 6px rgba(0,0,0,0.12);
+      transition: background-color 0.3s ease;
+      cursor: default;
+    }
+    ul.cert-list li:hover {
+      background-color: #d0d0d0;
+    }
+    body.dark ul.cert-list li {
+      background: #2a2a2a;
+      color: #eee;
+      box-shadow: none;
+    }
+
+    /* Kontak */
+    .contact-item {
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .contact-item a {
+      font-weight: 700;
+      color: #0077cc;
+      transition: color 0.3s;
+    }
+    .contact-item a:hover {
+      color: #004a99;
+    }
+    body.dark .contact-item a {
+      color: #66aaff;
+    }
+
+    /* Dark mode toggle button */
+    .dark-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 6px #000;
+      transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 101;
+      user-select: none;
+    }
+    body.dark .dark-toggle {
+      background: #eee;
+      color: #121212;
+      box-shadow: 0 0 6px #eee;
+    }
+
+    /* Animasi fade-in saat scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .portfolio-header {
+        font-size: 1.6rem;
+      }
+      .profile-photo {
+        width: 130px;
+        height: 130px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .contact-item {
+        font-size: 1rem;
+      }
+      section {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portfolio-header" aria-label="Judul situs portofolio">PORTOFOLIO</div>
+
+  <main>
+    <section id="home" class="fade-in visible" style="text-align:center;">
+      <img src="https://via.placeholder.com/160" alt="Foto Profil Pt Ari Teguh Prasetya" class="profile-photo" />
+      <p class="home-info">Pt Ari Teguh Prasetya</p>
+      <p class="home-info">Mahasiswa Ilmu Komputer</p>
+      <h2>Selamat Datang</h2>
+      <p>Halo! Saya Pt Ari Teguh Prasetya, mahasiswa Ilmu Komputer yang sedang belajar dan mengembangkan berbagai kemampuan di bidang teknologi.</p>
+    </section>
+
+    <section id="tentang" class="fade-in">
+      <h2>Tentang Saya</h2>
+      <p>Saya sedang menempuh pendidikan di jurusan Ilmu Komputer dan tertarik dengan dunia pemrograman dan teknologi informasi. Saat ini saya fokus mengembangkan portofolio dan keterampilan saya untuk siap menghadapi dunia kerja.</p>
+    </section>
+
+    <section id="proyek" class="fade-in">
+      <h2>Proyek</h2>
+      <p>Saat ini saya belum memiliki proyek yang ingin ditampilkan, tapi saya akan memperbarui bagian ini nanti.</p>
+    </section>
+
+    <section id="sertifikat" class="fade-in">
+      <h2>Sertifikat</h2>
+      <ul class="cert-list">
+        <li>Sertifikat 1 - (nanti saya tambahkan)</li>
+        <li>Sertifikat 2 - (nanti saya tambahkan)</li>
+      </ul>
+    </section>
+
+    <section id="kontak" class="fade-in">
+      <h2>Kontak</h2>
+      <p class="contact-item">Email: <a href="mailto:ari.teguh@example.com">ari.teguh@example.com</a></p>
+      <p class="contact-item">Instagram: <a href="https://instagram.com/ari.teguh" target="_blank" rel="noopener">@ari.teguh</a></p>
+    </section>
+  </main>
+
+  <button class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+
+  <script>
+    // Animasi fade-in saat scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.3 };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Dark mode toggle
+    const darkToggleBtn = document.querySelector('.dark-toggle');
+    darkToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      darkToggleBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+  </script>
+
+</body>
+</html>
